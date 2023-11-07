@@ -70,3 +70,79 @@
     </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Psicólogo Virtual - Chatbot de Apoio à Depressão</title>
+    <style>
+        /* Estilos simples para o chatbot */
+        .chatbox {
+            width: 300px;
+            height: 400px;
+            border: 1px solid #ccc;
+            overflow: auto;
+            padding: 10px;
+            margin: 20px auto;
+        }
+        .user-msg {
+            background: #d3e0dc;
+            border-radius: 5px;
+            padding: 8px;
+            margin: 5px 0;
+        }
+        .bot-msg {
+            background: #f0f0f0;
+            border-radius: 5px;
+            padding: 8px;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Psicólogo Virtual - Chatbot de Apoio à Depressão</h1>
+    <div class="chatbox" id="chatbox">
+        <div class="bot-msg">Olá! Como posso ajudar você hoje?</div>
+    </div>
+
+    <input type="text" id="userInput" placeholder="Digite sua mensagem...">
+    <button onclick="sendMessage()">Enviar</button>
+
+    <script>
+        const chatbox = document.getElementById("chatbox");
+
+        // Respostas pré-definidas para o chatbot
+        const responses = {
+            "olá": "Olá! Como você está se sentindo hoje?",
+            "estou me sentindo triste": "Lamento ouvir isso. Às vezes, expressar nossos sentimentos pode ajudar. Você gostaria de falar sobre isso?",
+            "não consigo sair da cama": "Quando nos sentimos assim, pode ser útil tentar estabelecer pequenas metas diárias. Você pode começar com algo simples, como tomar um banho ou fazer uma pequena caminhada.",
+            "não tenho vontade de fazer nada": "A falta de motivação é comum na depressão. Tente se envolver em atividades que costumavam trazer alegria, mesmo que pareça difícil no momento.",
+            "preciso de ajuda profissional": "Buscar a ajuda de um profissional é uma decisão corajosa e importante. Um psicólogo ou psiquiatra pode ajudar a encontrar o melhor caminho para lidar com a depressão. Você já considerou procurar um profissional?",
+            "obrigado": "Estou aqui para ajudar. Não hesite em me chamar se precisar de mais apoio.",
+            "adeus": "Até logo! Estou sempre aqui se precisar de ajuda."
+        };
+
+        function sendMessage() {
+            const userInput = document.getElementById("userInput").value;
+
+            // Exibir mensagem do usuário no chatbox
+            const userMsgElement = document.createElement("div");
+            userMsgElement.classList.add("user-msg");
+            userMsgElement.innerHTML = userInput;
+            chatbox.appendChild(userMsgElement);
+
+            // Responder com mensagem do chatbot
+            const botResponse = responses[userInput.toLowerCase()] || "Desculpe, não entendi. Como posso ajudar?";
+            const botMsgElement = document.createElement("div");
+            botMsgElement.classList.add("bot-msg");
+            botMsgElement.innerHTML = botResponse;
+            chatbox.appendChild(botMsgElement);
+
+            // Limpar campo de entrada
+            document.getElementById("userInput").value = "";
+
+            // Rolagem automática para a última mensagem
+            chatbox.scrollTop = chatbox.scrollHeight;
+        }
+    </script>
+</body>
+</html>
